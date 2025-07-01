@@ -78,3 +78,40 @@ Relationships: A payment belongs to one booking (many-to-one).
    Fields:
    - name: Name of the amenity (e.g., “Wi-Fi”).
 Relationships: An amenity can be associated with multiple properties, and a property can have multiple amenities (many-to-many).
+
+
+
+Feature Breakdown
+- User Management:
+Enables users to register, log in, and manage profiles with host or guest roles.
+Supports secure authentication and profile customization, ensuring personalized experiences for booking or hosting properties.
+Provides a foundation for restricting actions (e.g., only hosts can create listings).
+
+- Property Management:
+Allows hosts to create, edit, and delete property listings with details like title, price, and city.
+Enables guests to browse listings, forming the core of the platform’s rental marketplace.
+Supports image uploads for visually appealing property displays.
+
+- Search with Filters:
+Lets users search properties by criteria like location, price, and availability dates.
+Enhances user experience by providing relevant, filtered results for quick property discovery.
+Supports dynamic filtering for a seamless search interface.
+
+- Booking System:
+Facilitates reserving properties by specifying check-in and check-out dates with availability validation.
+Calculates total costs and links bookings to users and properties, enabling secure transactions.
+Provides confirmation for successful bookings, mimicking Airbnb’s reservation flow.
+
+- Review System:
+Allows guests to leave ratings and comments for properties after their stay.
+Displays reviews on property pages to build trust and inform user decisions.
+Enhances credibility through user-generated feedback.
+
+- Payment Processing:
+Integrates Stripe for secure, test-mode payment processing for bookings.
+Records transaction details and status, ensuring a reliable payment workflow.
+Simulates Airbnb’s payment system for a realistic user experience.
+
+- Messaging System (Optional):
+Enables hosts and guests to communicate about bookings or inquiries.
+Supports direct messaging linked to properties, improving coordination and user engagement.
