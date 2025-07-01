@@ -25,3 +25,54 @@ Team Roles and Responsibilities
 8. geopy: A Python library for geocoding addresses and enabling location-based search for listings.
 9. Django REST Framework : A Django extension for building RESTful APIs to support dynamic frontends or mobile apps.
 10. Cloudinary : A cloud service for storing and serving property images uploaded by hosts.
+
+    Database Design
+The database is structured to support the core functionalities of the Airbnb clone, including user management, property listings, bookings, reviews, and payments.
+ The following key entities are defined, with their important fields and relationships:
+1. Users:
+   Fields:
+   - username: Unique identifier for the user (e.g., “john_doe”).
+   - email: User’s email for login and notifications.
+   - first_name: User’s first name.
+   - last_name: User’s last name.
+   - is_host: Boolean indicating if the user is a host.
+Relationships: A user can host multiple properties (one-to-many) and make multiple bookings or reviews as a guest (one-to-many).
+
+2. Properties:
+   Fields:
+   - title: Name of the property (e.g., “Cozy Nairobi Apartment”).
+   - description: Detailed description of the property.
+   - price: Nightly price (e.g., 5000.00 KES).
+   - city: Location city (e.g., “Nairobi”).
+   - host: The user who owns the property (foreign key to User).
+Relationships: A property belongs to one host (many-to-one), can have multiple bookings (one-to-many), multiple reviews (one-to-many), and multiple amenities (many-to-many).
+
+3. Bookings:
+   Fields:
+   - property: The booked property (foreign key to Property).
+   - guest: The user making the booking (foreign key to User).
+   - check_in: Start date of the stay.
+   - check_out: End date of the stay.
+   - total_price: Total cost of the booking.
+Relationships: A booking belongs to one property and one guest (many-to-one) and has one payment (one-to-one).
+
+4. Reviews:
+   Fields:
+   - property: The reviewed property (foreign key to Property).
+   - guest: The user leaving the review (foreign key to User).
+   - rating: Rating from 1 to 5 stars.
+   - comment: Written feedback.
+Relationships: A review belongs to one property and one guest (many-to-one).
+
+5. Payments:
+   Fields:
+   - booking: The associated booking (foreign key to Booking).
+   - amount: Payment amount.
+   - stripe_payment_id: Stripe’s transaction ID.
+   - status: Payment status (e.g., “succeeded”, “pending”).
+Relationships: A payment belongs to one booking (many-to-one).
+
+6. Amenities :
+   Fields:
+   - name: Name of the amenity (e.g., “Wi-Fi”).
+Relationships: An amenity can be associated with multiple properties, and a property can have multiple amenities (many-to-many).
