@@ -26,9 +26,11 @@ Team Roles and Responsibilities
 9. Django REST Framework : A Django extension for building RESTful APIs to support dynamic frontends or mobile apps.
 10. Cloudinary : A cloud service for storing and serving property images uploaded by hosts.
 
+
     Database Design
 The database is structured to support the core functionalities of the Airbnb clone, including user management, property listings, bookings, reviews, and payments.
- The following key entities are defined, with their important fields and relationships:
+The following key entities are defined, with their important fields and relationships:
+
 1. Users:
    Fields:
    - username: Unique identifier for the user (e.g., “john_doe”).
