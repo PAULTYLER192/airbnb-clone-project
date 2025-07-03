@@ -115,3 +115,15 @@ Simulates Airbnb’s payment system for a realistic user experience.
 - Messaging System (Optional):
 Enables hosts and guests to communicate about bookings or inquiries.
 Supports direct messaging linked to properties, improving coordination and user engagement.
+
+
+
+CI/CD Pipeline
+Continuous Integration/Continuous Deployment (CI/CD) pipelines automate the process of building, testing, and deploying code changes, ensuring a reliable and efficient development cycle for the Airbnb clone. They enhance code quality by running tests and linters on every change and streamline deployments to production, enabling rapid iteration and collaboration.
+Tools Used:
+- GitHub Actions: Automates CI/CD workflows, running tests and linters on code pushes and deploying to production if tests pass.
+- Docker: Packages the application with dependencies for consistent testing and deployment environments.
+- Heroku: Hosts the production application, integrating with GitHub Actions for automatic deployments.
+- Pytest: Runs unit and integration tests to validate features like bookings and property management.
+- Flake8: Lints Python code to ensure style consistency and quality in the CI pipeline.
+- Bandit : Scans for security vulnerabilities in Python code, enhancing API security.
