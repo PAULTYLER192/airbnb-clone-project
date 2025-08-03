@@ -127,3 +127,28 @@ Tools Used:
 - Pytest: Runs unit and integration tests to validate features like bookings and property management.
 - Flake8: Lints Python code to ensure style consistency and quality in the CI pipeline.
 - Bandit : Scans for security vulnerabilities in Python code, enhancing API security.
+
+API Security
+The Airbnb Clone prioritizes security to protect user data, transactions, and interactions across its APIs, leveraging Django’s robust features and third-party integrations. Key security measures include:
+
+- **Authentication and Authorization**: Django’s built-in authentication system secures user access, utilizing token-based authentication via Django REST Framework (DRF). Role-based access control (RBAC) ensures that only authenticated hosts can manage listings, and guests can only book or review properties. JSON Web Tokens (JWT) are employed for stateless API authentication, with refresh tokens managed securely to prevent unauthorized access.
+
+- **Input Validation and Sanitization**: All API endpoints validate and sanitize incoming data (e.g., property titles, email addresses) using Django forms and DRF serializers. This prevents common vulnerabilities like SQL injection and cross-site scripting (XSS), with PostgreSQL’s parameterized queries further enhancing protection.
+
+- **Data Encryption**: Sensitive data, such as user passwords and payment details, is encrypted using Django’s password hashing (e.g., PBKDF2 with SHA256) and Stripe’s end-to-end encryption for transaction processing. PostgreSQL connections use SSL/TLS to encrypt data in transit, configured via environment variables (e.g., `DATABASE_URL` with SSL mode).
+
+- **Rate Limiting and Throttling**: DRF’s throttling policies limit API requests (e.g., 100 requests per hour per user) to mitigate brute-force attacks and denial-of-service (DoS) attempts, configurable in the Django settings file.
+
+- **CORS and CSRF Protection**: Cross-Origin Resource Sharing (CORS) is restricted to trusted domains using `django-cors-headers`, ensuring APIs are only accessible by the frontend. CSRF tokens protect against cross-site request forgery, enforced for non-safe methods like POST and PUT.
+
+- **Secure File Handling**: Cloudinary handles property image uploads with secure URLs and access controls, preventing unauthorized access to images. Uploaded files are validated for size and type before processing to avoid malicious uploads.
+
+- **Payment Security**: Stripe’s API is integrated with test mode enabled during development, ensuring secure payment processing. Sensitive payment data is never stored locally; only `stripe_payment_id` is retained in the Payments table, with webhook validation to confirm transaction status.
+
+- **Security Scanning**: Bandit, integrated into the CI/CD pipeline, scans Python code for vulnerabilities (e.g., hard-coded secrets, unsafe functions) during every GitHub Actions run, with findings addressed before deployment.
+
+- **Environment Management**: Environment variables (e.g., `SECRET_KEY`, `STRIPE_API_KEY`) are stored in a `.env` file, excluded from version control via `.gitignore`, and loaded using `python-decouple` to prevent exposure on GitHub.
+
+- **Logging and Monitoring**: Django’s logging framework records API access and errors, with logs stored securely and monitored for suspicious activity, enhancing the ability to respond to security incidents.
+
+These measures ensure the API is robust against common threats, providing a secure foundation for user trust and compliance with data protection standards.
